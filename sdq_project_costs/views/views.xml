@@ -1,0 +1,339 @@
+<odoo>
+    <!--    <?xml version="1.0" encoding="utf-8"?>-->
+
+
+    <!--tree view of the project model-->
+
+    <record id="project_tree_view" model="ir.ui.view">
+        <field name="name">project.costs.tree</field>
+        <field name="model">project.costs</field>
+        <field name="arch" type="xml">
+            <tree string="Project">
+                <field name="name_seq"/>
+                <field name="project_name"/>
+                <field name="company_id"/>
+                <field name="project_responsable"/>
+                <field name="customer"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="adresse"/>
+                <field name="city"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--form view of the patient model-->
+    <record id="project_form" model="ir.ui.view">
+        <field name="name">Projects.costs.form</field>
+        <field name="model">project.costs</field>
+        <field name="arch" type="xml">
+            <form string="Project">
+
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+
+                        <group>
+                            <label for="project_name" string="Projet" class="col-3 col-lg-3 o_light_label"/>
+                            <h1>
+                                <field name="project_name"/>
+                            </h1>
+                        </group>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="project_responsable"/>
+                            <field name="customer"/>
+
+                            <field name="project_description"/>
+
+                            <field name="signed_contract"/>
+
+                            <field name="company_id"/>
+                            <!--                            <field name="total_costs"/>-->
+                            <field name="total_material_costs"/>
+                            <field name="total_service_costs"/>
+                            <field name="total_overhead_costs"/>
+                            <label for="total_costs"/>
+
+                            <div>
+                                <h1>
+                                    <field name="total_costs"/>
+                                </h1>
+                            </div>
+                            <!--                            <field name="total_costs"/>-->
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="adresse"/>
+                            <field name="city"/>
+                            <field name="country_id"/>
+                        </group>
+                    </group>
+                    <separator string="Outils"/>
+                    <notebook>
+                        <page name="info" string="Materiels">
+                            <field name="tools_lines" nolabel="1">
+                                <tree editable="top">
+
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_material_costs" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                                <!--                                                                <field name="tax_id" widget="monetary"-->
+                                <!--                                                                       options="{'currency_field': 'currency_id'}"/>-->
+                                <!--                                <div class="oe_subtotal_footer_separator oe_inline">-->
+                                <!--                                    <label for="remaining_salary"/>-->
+                                <!--                                </div>-->
+                                <!--                                <field name="remaining_salary" nolabel="1" class="oe_subtotal_footer_separator"-->
+                                <!--                                       widget="monetary" options="{'currency_field': 'currency_id'}"/>-->
+                            </group>
+                        </page>
+
+                    </notebook>
+                    <separator string="Services projet"/>
+                    <notebook>
+                        <page name="info" string="Services">
+                            <field name="service_lines" nolabel="1">
+                                <tree editable="top">
+                                    <field name="product_id"/>
+                                    <!--                                    <field name="name"/>-->
+                                    <field name="qty"/>
+                                    <field name="uom_id"/>
+                                    <field name="price_unit"/>
+                                    <field name="tax_id"/>
+                                    <!--                                    <field name="price_subtotal"/>-->
+                                    <field name="price_total"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_service_costs" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    <separator string="Location des véhicules"/>
+                    <notebook>
+                        <page name="info" string="Location">
+                            <!--                                                                <field name="vehicle_id"/>-->
+                            <field name="order_line" nolabel="1">
+                                <tree editable="top">
+                                    <!--                                    <field name="order_id"/>-->
+                                    <!--                                    <field name="name"/>-->
+                                    <!--                                    <field name="vehicle_id"/>-->
+                                    <field name="vehicle_id"/>
+                                    <field name="product_id"/>
+                                    <field name="product_qty"/>
+                                    <field name="product_uom"/>
+                                    <field name="price_unit"/>
+                                    <field name="price_tax"/>
+                                    <!--                                    <field name="price_subtotal"/>-->
+                                    <field name="price_subtotal"/>
+                                    <field name="price_total"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_service_costs" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    <separator string="Artisans"/>
+                    <notebook>
+                        <page name="info" string="Location">
+                            <field name="service_lines" nolabel="1">
+                                <tree editable="top">
+
+                                    <field name="product_id"/>
+                                    <!--                                    <field name="name"/>-->
+                                    <field name="qty"/>
+                                    <field name="uom_id"/>
+                                    <field name="price_unit"/>
+                                    <field name="tax_id"/>
+                                    <!--                                    <field name="price_subtotal"/>-->
+                                    <field name="price_total"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_renting_costs" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </page>
+                    </notebook>
+
+                    <separator string="Main d'Oeuvre"/>
+                    <notebook>
+                        <page name="info" string="Main d'Oeuvre">
+                            <field name="tools_lines" nolabel="1">
+                                <tree editable="top">
+                                    <field name="product_id"/>
+                                    <!--                                    <field name="name"/>-->
+                                    <field name="qty"/>
+                                    <field name="uom_id"/>
+                                    <field name="price_unit"/>
+                                    <field name="tax_id"/>
+                                    <field name="price_subtotal"/>
+                                    <field name="price_total"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_labour_costs" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    <separator string="Autre Charges"/>
+                    <notebook>
+                        <page name="info" string="Overheads">
+                            <field name="overhead_lines" nolabel="1">
+                                <tree editable="top">
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="qty"/>
+                                    <field name="uom_id"/>
+                                    <field name="price_unit"/>
+                                    <field name="tax_id"/>
+                                    <!--                                    <field name="price_subtotal"/>-->
+                                    <field name="price_total"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_overhead_costs" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    <separator string="Facturation"/>
+                    <notebook>
+                        <page name="info" string="Overheads">
+                            <field name="overhead_lines" nolabel="1">
+                                <tree editable="top">
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="qty"/>
+                                    <field name="uom_id"/>
+                                    <field name="price_unit"/>
+                                    <field name="tax_id"/>
+                                    <!--                                    <field name="price_subtotal"/>-->
+                                    <field name="price_total"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_overhead_costs" widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+
+        </field>
+    </record>
+
+
+    <!--action to open the project Template-->
+    <record id="project_cost_action" model="ir.actions.act_window">
+        <field name="name">Projet</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">project.costs</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban,graph,pivot</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Félicitations,Creér votre 1ére Projet !
+            </p>
+        </field>
+    </record>
+    <record id="project_material_action" model="ir.actions.act_window">
+        <field name="name">Material</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tools.costs</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Félicitations,Creér votre 1ére Projet !
+            </p>
+        </field>
+    </record>
+
+
+    <!-- menu categories -->
+    <menuitem name="Projets" id="sdq_project_costs.menu_1" sequence="1"/>
+    <menuitem name="Projets" id="sdq_project_costs.menu_11" sequence="2" action="project_cost_action"
+              parent="sdq_project_costs.menu_1"/>
+    <menuitem name="Articles" id="sdq_project_costs.menu_2" sequence="3" parent="sdq_project_costs.menu_1"
+              action="stock.product_template_action_product"/>
+    <!--    <menuitem name="Location" id="sdq_project_rent_menu_3" parent="sdq_project_costs.menu_1"-->
+    <!--              action="renting_order_action"/>-->
+    <!--    <menuitem name="salarie" id="sdq_project_rent_menu_4" sequence="4" parent="sdq_project_costs.menu_1"-->
+    <!--              action="sadeq_project.action_salaire"/>-->
+
+
+</odoo>
+
+
+        <!--    <record id="project_costs_kanban_view" model="ir.ui.view">-->
+        <!--        <field name="name">project.cost.kanban</field>-->
+        <!--        <field name="model">project.costs</field>-->
+        <!--        <field name="arch" type="xml">-->
+        <!--&lt;!&ndash;            <kanban>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <field name="project_name"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                &lt;!&ndash;                <field name="photo"/>&ndash;&gt;&ndash;&gt;-->
+        <!--                &lt;!&ndash;                <templates>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                    <t t-name="kanban-box">&ndash;&gt;-->
+        <!--                &lt;!&ndash;                        <div class="oe_kanban_global_click">&ndash;&gt;-->
+        <!--                &lt;!&ndash;                            &lt;!&ndash;                            <div class="o_kanban_image">&ndash;&gt;&ndash;&gt;-->
+        <!--                &lt;!&ndash;                            &lt;!&ndash;                                <img t-att-src="kanban_image('project.costs', 'photo', record.id.raw_value)"&ndash;&gt;&ndash;&gt;-->
+        <!--                &lt;!&ndash;                            &lt;!&ndash;                                     alt="Product"/>&ndash;&gt;&ndash;&gt;-->
+        <!--                &lt;!&ndash;                            &lt;!&ndash;                            </div>&ndash;&gt;&ndash;&gt;-->
+        <!--                &lt;!&ndash;                            <div class="oe_kanban_details">&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                <strong class="o_kanban_record_title">&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                    <field name="project_name"/>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                    &lt;!&ndash;                                    <field name="project_responsable"/>&ndash;&gt;&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                    <small>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                        <field name="total_material_costs"/>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                    </small>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                </strong>&ndash;&gt;-->
+
+        <!--                &lt;!&ndash;                                <ul>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                    <li>Responsale:&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                        <field name="project_responsable"></field>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                    </li>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                    <li>Company:&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                        <field name="company_id"></field>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                    </li>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                                </ul>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                            </div>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                        </div>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                    </t>&ndash;&gt;-->
+        <!--                &lt;!&ndash;                </templates>&ndash;&gt;-->
+        <!--            </kanban>-->
+        <!--        </field>-->
+        <!--    </record>-->
+        <!--    <record id="project_costs_graph_view" model="ir.ui.view">-->
+        <!--        <field name="name">project.costs.order.graph.view</field>-->
+        <!--        <field name="model">project.costs.order</field>-->
+        <!--        <field name="arch" type="xml">-->
+        <!--            <graph string="Analysis">-->
+        <!--                <field name="project_name"/>-->
+        <!--                <field name="company_id"/>-->
+        <!--                <field name="total_material_costs" type="measure"/>-->
+        <!--                <field name="total_service_costs" type="measure"/>-->
+        <!--                <field name="total_labour_costs" type="measure"/>-->
+        <!--                <field name="total_overhead_costs" type="measure"/>-->
+        <!--                <field name="total_renting_costs" type="measure"/>-->
+        <!--            </graph>-->
+        <!--        </field>-->
+        <!--    </record>-->

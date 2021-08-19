@@ -1,0 +1,83 @@
+<odoo>
+    <!--    <?xml version="1.0" encoding="utf-8"?>-->
+
+
+    <!--tree view of the project model-->
+
+    <record id="project_tree_view" model="ir.ui.view">
+        <field name="name">project.units.tree</field>
+        <field name="model">project.units</field>
+        <field name="arch" type="xml">
+            <tree string="Units">
+                <!--                <field name="name_seq"/>-->
+                <!--                <field name="project_name"/>-->
+                <!--                <field name="company_id"/>-->
+                <!--                <field name="project_responsable"/>-->
+                <!--                <field name="customer"/>-->
+                <!--                <field name="start_date"/>-->
+                <!--                <field name="end_date"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <!--form view of the patient model-->
+    <record id="project_form" model="ir.ui.view">
+        <field name="name">Projects.units.form</field>
+        <field name="model">project.units</field>
+        <field name="arch" type="xml">
+            <form string="Project">
+
+                <header>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <group>
+                            <field name="project_name"/>
+                        </group>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="project_responsable"/>
+                            <field name="customer"/>
+
+                            <field name="project_description"/>
+
+                            <field name="signed_contract"/>
+
+                            <field name="company_id"/>
+                            <field name="total_costs"/>
+                            <field name="estimated_cost"/>
+                            <field name="total_tools_costs"/>
+
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--action to open the project Template-->
+    <record id="project_cost_action" model="ir.actions.act_window">
+        <field name="name">Project Costs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">project.costs</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Félicitations,Creér votre 1ére Projet !
+            </p>
+        </field>
+    </record>
+
+
+    <!-- menu categories -->
+    <menuitem name="Project Costs" id="sdq_project_costs.menu_1" action="project_cost_action"/>
+    <!--    <menuitem name="Menu 2" id="sdq_project_costs.menu_2" parent="sdq_project_costs.menu_root"/>-->
+
+
+</odoo>

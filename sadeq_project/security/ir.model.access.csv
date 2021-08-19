@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_salariee_s,access.sadeq.mavor,model_payrool.managements,,1,1,1,1
+access_s_pr,access.sad,model_payroll.line,,1,1,1,1
+access_ss_pr,access.sadss,model_payroll.lines,,1,1,1,1
+access_s_prs,access.sads,model_payroll.advance_line,,1,1,1,1

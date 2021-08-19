@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <menuitem id="project_sroot"
+              name="Gestion de la paie"
+              sequence="1"
+              web_icon="sadeq_project,static/description/icon.png"/>
+
+    <menuitem id="project_sone"
+              name="Gestion de la paie"
+    />
+    <menuitem
+            name="Congés"
+            id="sadeq_project.holiday"
+            parent="project_sone"
+            action="hr_holidays.hr_leave_action_action_approve_department"/>
+    <menuitem
+            name="Employés"
+            id="sadeq_project.employee"
+            parent="project_sone"
+            action="hr.open_view_employee_list_my"/>
+
+
+    <menuitem id="salar_sad" name="Paie" parent="project_sone" action="action_salaire" sequence="7"/>
+
+
+</odoo>
